@@ -19,6 +19,7 @@ class AwesomeFilterWidget extends StatefulWidget {
   final Widget? spacer;
   final Curve animationCurve;
   final Duration animationDuration;
+  final bool showFilterSelector;
 
   AwesomeFilterWidget({
     required this.state,
@@ -29,6 +30,7 @@ class AwesomeFilterWidget extends StatefulWidget {
     this.spacer = const SizedBox(height: 8),
     this.animationCurve = Curves.easeInOut,
     this.animationDuration = const Duration(milliseconds: 400),
+    this.showFilterSelector = false
   }) : indicator = Builder(
           builder: (context) => Container(
             color: AwesomeThemeProvider.of(context)
@@ -100,7 +102,7 @@ class _AwesomeFilterWidgetState extends State<AwesomeFilterWidget> {
                 },
               ),
             ),
-            Positioned(
+            widget.showFilterSelector ? Positioned(
               bottom:
                   widget.filterListPosition == FilterListPosition.belowButton
                       ? 0
@@ -110,7 +112,7 @@ class _AwesomeFilterWidgetState extends State<AwesomeFilterWidget> {
                   : 0,
               right: 20,
               child: AwesomeFilterButton(state: widget.state),
-            ),
+            ) : SizedBox(),
           ],
         ),
       ),
