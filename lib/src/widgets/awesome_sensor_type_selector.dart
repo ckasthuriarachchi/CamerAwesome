@@ -24,6 +24,10 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
     widget.state.getSensors().then((sensorDeviceData) {
       setState(() {
         _sensorDeviceData = sensorDeviceData;
+        if (_sensorDeviceData != null && _sensorDeviceData?.ultraWideAngle != null) {
+          widget.state.setSensorType(0, SensorType.ultraWideAngle,
+                          _sensorDeviceData!.ultraWideAngle!.uid);
+          }
       });
     });
   }
@@ -54,10 +58,6 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
     }
 
     final sensorConfig = sensorConfigSnapshot.requireData;
-    if (_sensorDeviceData != null && _sensorDeviceData?.ultraWideAngle != null) {
-          widget.state.setSensorType(0, SensorType.ultraWideAngle,
-                          _sensorDeviceData!.ultraWideAngle!.uid);
-    }
     return StreamBuilder<SensorType>(
       stream: sensorConfig.sensorType$,
       builder: (context, snapshot) {
