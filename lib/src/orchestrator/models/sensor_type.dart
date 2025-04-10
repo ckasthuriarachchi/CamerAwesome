@@ -42,6 +42,11 @@ class SensorTypeDevice {
     required this.flashAvailable,
     required this.uid,
   });
+
+  @override
+  String toString() {
+    return 'SensorTypeDevice{sensorType: $sensorType, name: $name, iso: $iso, flashAvailable: $flashAvailable, uid: $uid}';
+  }
 }
 
 // TODO: instead of storing SensorTypeDevice values,
@@ -67,7 +72,7 @@ class SensorDeviceData {
   ///
   /// iOS only
   SensorTypeDevice? trueDepth;
-
+ 
   SensorDeviceData({
     this.wideAngle,
     this.ultraWideAngle,
@@ -93,4 +98,9 @@ class SensorDeviceData {
   int get availableFrontSensors => [
         trueDepth,
       ].where((element) => element != null).length;
+
+  @override
+  String toString() {
+    return 'SensorDeviceData{wideAngle: $wideAngle, ultraWideAngle: $ultraWideAngle, telephoto: $telephoto, trueDepth: $trueDepth}';
+  }
 }
