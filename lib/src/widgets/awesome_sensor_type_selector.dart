@@ -66,7 +66,9 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
             _sensorDeviceData!.availableBackSensors <= 0) {
           return const SizedBox.shrink();
         }
-        print(snapshot.data);
+        snapshot.data = SensorType.ultraWideAngle;
+        widget.state.setSensorType(0, SensorType.ultraWideAngle,
+                          _sensorDeviceData!.ultraWideAngle!.uid);
         return Container(
           height: 50,
           decoration: BoxDecoration(
