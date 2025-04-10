@@ -66,7 +66,7 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
             _sensorDeviceData!.availableBackSensors <= 0) {
           return const SizedBox.shrink();
         }
-
+        print(snapshot.data);
         return Container(
           height: 50,
           decoration: BoxDecoration(
