@@ -42,7 +42,6 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
   }
 
   Widget _buildContent(AsyncSnapshot<SensorConfig> sensorConfigSnapshot) {
-    print(_sensorDeviceData);
     if (!sensorConfigSnapshot.hasData) {
       return const SizedBox.shrink();
     }
@@ -55,6 +54,10 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
     }
 
     final sensorConfig = sensorConfigSnapshot.requireData;
+    if (_sensorDeviceData != null && _sensorDeviceData?.ultraWideAngle != null) {
+          widget.state.setSensorType(0, SensorType.ultraWideAngle,
+                          _sensorDeviceData!.ultraWideAngle!.uid);
+    }
     return StreamBuilder<SensorType>(
       stream: sensorConfig.sensorType$,
       builder: (context, snapshot) {
@@ -66,8 +69,6 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
             _sensorDeviceData!.availableBackSensors <= 0) {
           return const SizedBox.shrink();
         }
-        widget.state.setSensorType(0, SensorType.ultraWideAngle,
-                          _sensorDeviceData!.ultraWideAngle!.uid);
         return Container(
           height: 50,
           decoration: BoxDecoration(
