@@ -42,6 +42,7 @@ class _AwesomeSensorTypeSelectorState extends State<AwesomeSensorTypeSelector> {
   }
 
   Widget _buildContent(AsyncSnapshot<SensorConfig> sensorConfigSnapshot) {
+    print(_sensorDeviceData);
     if (!sensorConfigSnapshot.hasData) {
       return const SizedBox.shrink();
     }
